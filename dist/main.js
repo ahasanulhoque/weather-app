@@ -1,0 +1,1 @@
+(()=>{const e=document.querySelector("body"),n=document.createElement("h1");n.innerHTML="Hello weather",e.appendChild(n)})();
