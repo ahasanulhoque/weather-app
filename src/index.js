@@ -1,7 +1,13 @@
 import './style.css';
+import { retrieveData, ProcessedWeatherData } from './api-functions';
 
-const body = document.querySelector('body');
-const title = document.createElement('h1');
-title.innerHTML = 'Hello weather!';
+// const content = document.querySelector('#content');
 
-body.appendChild(title);
+async function retrieveProcess() {
+  const x = await retrieveData('london,uk');
+  console.log(x);
+  const y = ProcessedWeatherData(x);
+  console.log(y);
+}
+
+retrieveProcess();
