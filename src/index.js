@@ -1,13 +1,28 @@
 import './style.css';
 import { retrieveData, ProcessedWeatherData } from './api-functions';
+import { createForm } from './dom-manipulation';
 
-// const content = document.querySelector('#content');
+const PageController = (() => {
+  const content = document.querySelector('#content');
 
-async function retrieveProcess() {
-  const x = await retrieveData('london,uk');
-  console.log(x);
-  const y = ProcessedWeatherData(x);
-  console.log(y);
-}
+  // Below function is just testing that retrieval and processing of data
+  // from api works
+  async function retrieveProcess() {
+    const x = await retrieveData('london,uk');
+    console.log(x);
+    const y = ProcessedWeatherData(x);
+    console.log(y);
+  }
 
-retrieveProcess();
+  createForm(content);
+  retrieveProcess();
+
+  const searchField = document.querySelector('input');
+  const searchButton = document.querySelector('button');
+
+  searchButton.onclick = async () => {
+    const x = await retrieveData(searchField.value);
+    const y = ProcessedWeatherData(x);
+    console.log(y);
+  };
+})();
