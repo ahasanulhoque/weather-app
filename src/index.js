@@ -22,6 +22,7 @@ const PageController = (() => {
 
   searchButton.onclick = async () => {
     const x = await retrieveData(searchField.value);
+    console.log(x);
     const y = ProcessedWeatherData(x);
     console.log(y);
   };
