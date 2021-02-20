@@ -78,26 +78,55 @@ const ProcessedWeatherData = function createProcessedDataObject(
 
   const cityName = unprocessedData[0].name;
 
-  // From 'main' property
-  const tempK = unprocessedData[0].main.temp;
-  const maxTemp = unprocessedData[0].main.temp_max;
-  const minTemp = unprocessedData[0].main.temp_min;
-  const feelsLike = unprocessedData[0].main.feels_like;
-  const humidityPercentage = unprocessedData[0].main.humidity;
+  // Current data constructor
+  const currentData = (function processCurrentDataObject() {
+    // From 'main' property
+    const tempK = unprocessedData[0].main.temp;
+    const maxTemp = unprocessedData[0].main.temp_max;
+    const minTemp = unprocessedData[0].main.temp_min;
+    const feelsLike = unprocessedData[0].main.feels_like;
+    const humidityPercentage = unprocessedData[0].main.humidity;
 
-  // From 'weather' property
-  const fullWeather = unprocessedData[0].weather[0].description;
-  const shortWeather = unprocessedData[0].weather[0].main;
+    // From 'weather' property
+    const fullWeather = unprocessedData[0].weather[0].description;
+    const shortWeather = unprocessedData[0].weather[0].main;
+    return {
+      cityName,
+      tempK,
+      maxTemp,
+      minTemp,
+      feelsLike,
+      humidityPercentage,
+      fullWeather,
+      shortWeather,
+    };
+  })();
+
+  // Day constructor
+  const day = function createDailyData(i) {
+    // Using i + 1 in daily array to skip day 0 (today)
+    const minTemp = unprocessedData[1].daily[i + 1].temp.min;
+    const maxTemp = unprocessedData[1].daily[i + 1].temp.max;
+    const fullWeather = unprocessedData[1].daily[i + 1].weather[0].description;
+    const shortWeather = unprocessedData[1].daily[i + 1].weather[0].main;
+
+    return { minTemp, maxTemp, fullWeather, shortWeather };
+  };
+
+  // Forecast constructor
+  const forecastData = (function createForecastData() {
+    const daily = [];
+    for (let i = 0; i < 7; i++) {
+      daily.push(day(i));
+    }
+
+    return { daily };
+  })();
 
   return {
     cityName,
-    tempK,
-    maxTemp,
-    minTemp,
-    feelsLike,
-    humidityPercentage,
-    fullWeather,
-    shortWeather,
+    currentData,
+    forecastData,
   };
 };
 
