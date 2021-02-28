@@ -74,8 +74,6 @@ const retrieveData = async function retriveWeatherData(location) {
 const ProcessedWeatherData = function createProcessedDataObject(
   unprocessedData
 ) {
-  // Rewrite to also process forecast
-
   const cityName = unprocessedData[0].name;
 
   // Current data constructor
@@ -113,6 +111,15 @@ const ProcessedWeatherData = function createProcessedDataObject(
     return { minTemp, maxTemp, fullWeather, shortWeather };
   };
 
+  // Hour constructor
+  const hour = function createHourlyData(i) {
+    const temp = unprocessedData[1].hourly[i].temp;
+    const feelsLike = unprocessedData[1].hourly[i].feels_like;
+    const weather = unprocessedData[1].hourly[i].weather[0].main;
+
+    return { temp, feelsLike, weather };
+  };
+
   // Forecast constructor
   const forecastData = (function createForecastData() {
     const daily = [];
@@ -120,7 +127,12 @@ const ProcessedWeatherData = function createProcessedDataObject(
       daily.push(day(i));
     }
 
-    return { daily };
+    const hourly = [];
+    for (let j = 0; j < 48; j++) {
+      hourly.push(hour(j));
+    }
+
+    return { daily, hourly };
   })();
 
   return {
