@@ -1,6 +1,6 @@
 import './style.css';
 import { retrieveData, ProcessedWeatherData } from './api-functions';
-import { createForm } from './dom-manipulation';
+import { createForm, displayWeather } from './dom-manipulation';
 
 const PageController = (() => {
   const content = document.querySelector('#content');
@@ -12,6 +12,8 @@ const PageController = (() => {
     console.log(x);
     const y = ProcessedWeatherData(x);
     console.log(y);
+
+    displayWeather(content, y);
   }
 
   createForm(content);

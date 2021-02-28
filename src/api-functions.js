@@ -79,7 +79,7 @@ const ProcessedWeatherData = function createProcessedDataObject(
   // Current data constructor
   const currentData = (function processCurrentDataObject() {
     // From 'main' property
-    const tempK = unprocessedData[0].main.temp;
+    const temp = unprocessedData[0].main.temp;
     const maxTemp = unprocessedData[0].main.temp_max;
     const minTemp = unprocessedData[0].main.temp_min;
     const feelsLike = unprocessedData[0].main.feels_like;
@@ -90,7 +90,7 @@ const ProcessedWeatherData = function createProcessedDataObject(
     const shortWeather = unprocessedData[0].weather[0].main;
     return {
       cityName,
-      tempK,
+      temp,
       maxTemp,
       minTemp,
       feelsLike,
