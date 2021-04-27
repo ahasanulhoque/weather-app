@@ -1,3 +1,21 @@
-h1 {
-    color: blue;
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#content {
+  height: 100vh;
+}
+
+#daily-data {
+  display: none;
+  height: 80vh;
+  overflow-y: auto;
+}
+
+#hourly-data {
+  display: none;
+  height: 80vh;
+  overflow-y: auto;
 }
