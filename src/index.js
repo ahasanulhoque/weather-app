@@ -1,6 +1,6 @@
 import './style.css';
 import { retrieveData, ProcessedWeatherData } from './api-functions';
-import { createPage, displayWeather } from './dom-manipulation';
+import { createPage, displayWeather, changeDisplay } from './dom-manipulation';
 
 const PageController = (() => {
   const content = document.querySelector('#content');
@@ -27,5 +27,26 @@ const PageController = (() => {
     console.log(x);
     const y = ProcessedWeatherData(x);
     console.log(y);
+  };
+
+  const displayButtonSection = document.querySelector(
+    '#button-display-wrapper'
+  );
+
+  displayButtonSection.onclick = (e) => {
+    // This is the array that will be sent to changeDisplay().
+    // See changeDisplay() in dom-manipulation.js for explanation of paramaters
+    const weatherSections = [];
+    weatherSections.push(content.querySelector('#current-weather'));
+    weatherSections.push(content.querySelector('#daily-data'));
+    weatherSections.push(content.querySelector('#hourly-data'));
+
+    if (e.target.id === 'show-current') {
+      changeDisplay(weatherSections, 0);
+    } else if (e.target.id === 'show-daily') {
+      changeDisplay(weatherSections, 1);
+    } else if (e.target.id === 'show-hourly') {
+      changeDisplay(weatherSections, 2);
+    }
   };
 })();

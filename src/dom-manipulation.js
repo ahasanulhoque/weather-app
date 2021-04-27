@@ -156,6 +156,17 @@ function displayWeather(weatherWrapper, weatherData) {
   })();
 }
 
-function weatherController() {}
+function changeDisplay(pageElements, chosenElement) {
+  // Funciton will change display on page according to what user clicked
+  // pageElements should be array, and chosenElement should be index of element to display
 
-export { createPage, displayWeather };
+  for (let i = 0; i < pageElements.length; i++) {
+    if (i == chosenElement) {
+      pageElements[i].style.display = 'block';
+    } else {
+      pageElements[i].style.display = 'none';
+    }
+  }
+}
+
+export { createPage, displayWeather, changeDisplay };
