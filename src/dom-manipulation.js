@@ -1,10 +1,13 @@
 function createPage(content) {
-  //Create the form that will be used to search for weather
+  // Create the form that will be used to search for weather
   const form = document.createElement('form');
   form.id = 'search-form';
 
   const inputField = document.createElement('input');
+  inputField.id = 'search-input';
+
   const inputButton = document.createElement('button');
+  inputButton.id = 'input-button';
 
   inputField.placeholder = 'Search for your city';
   inputButton.innerHTML = 'Submit';
@@ -14,17 +17,17 @@ function createPage(content) {
 
   content.appendChild(form);
 
-  //Create the section for weather, which will be filled by displayWeather
+  // Create the section for weather, which will be filled by displayWeather
   const weatherWrapper = document.createElement('section');
   weatherWrapper.id = 'weather-wrapper';
 
   content.appendChild(weatherWrapper);
 
-  //Create div for buttons which will control display
+  // Create div for buttons which will control display
   const buttonDisplayWrapper = document.createElement('div');
   buttonDisplayWrapper.id = 'button-display-wrapper';
 
-  //Create display buttons
+  // Create display buttons
   const currentButton = document.createElement('button');
   currentButton.id = 'show-current';
   currentButton.innerHTML = 'Current';
@@ -44,6 +47,11 @@ function createPage(content) {
 }
 
 function displayWeather(weatherWrapper, weatherData) {
+  // Remove all child nodes if weather data is currently displayed
+  while (weatherWrapper.firstChild) {
+    weatherWrapper.removeChild(weatherWrapper.firstChild);
+  }
+
   const cityName = document.createElement('h2');
   cityName.innerHTML = weatherData.currentData.cityName;
   weatherWrapper.appendChild(cityName);

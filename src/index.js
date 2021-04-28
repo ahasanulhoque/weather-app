@@ -4,6 +4,7 @@ import { createPage, displayWeather, changeDisplay } from './dom-manipulation';
 
 const PageController = (() => {
   const content = document.querySelector('#content');
+  createPage(content);
 
   // Below function is just testing that retrieval and processing of data
   // from api works
@@ -16,17 +17,19 @@ const PageController = (() => {
     displayWeather(content.querySelector('#weather-wrapper'), y);
   }
 
-  createPage(content);
   retrieveProcess();
 
   const searchField = document.querySelector('input');
-  const searchButton = document.querySelector('button');
+  const searchForm = document.querySelector('#search-form');
 
-  searchButton.onclick = async () => {
+  searchForm.onsubmit = async (submission) => {
+    submission.preventDefault();
     const x = await retrieveData(searchField.value);
     console.log(x);
     const y = ProcessedWeatherData(x);
     console.log(y);
+
+    displayWeather(content.querySelector('#weather-wrapper'), y);
   };
 
   const displayButtonSection = document.querySelector(
