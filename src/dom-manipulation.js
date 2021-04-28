@@ -1,3 +1,5 @@
+import { format } from 'date-fns';
+
 function createPage(content) {
   // Create the form that will be used to search for weather
   const form = document.createElement('form');
@@ -105,6 +107,16 @@ function displayWeather(weatherWrapper, weatherData) {
       const day = document.createElement('section');
       day.id = `day-${i}`;
 
+      const dailyDate = document.createElement('p');
+      // Use format() from date-fns and slice date up to last comma, to exclude year
+      dailyDate.innerHTML = format(
+        weatherData.forecastData.daily[i].date,
+        'PPPP'
+      ).slice(
+        0,
+        format(weatherData.forecastData.daily[i].date, 'PPPP').lastIndexOf(',')
+      );
+
       const dailyMinTemp = document.createElement('p');
       dailyMinTemp.innerHTML = `Low: ${Math.round(
         weatherData.forecastData.daily[i].minTemp - 273.15
@@ -118,6 +130,7 @@ function displayWeather(weatherWrapper, weatherData) {
       const dailyWeather = document.createElement('p');
       dailyWeather.innerHTML = `${weatherData.forecastData.daily[i].shortWeather}`;
 
+      day.appendChild(dailyDate);
       day.appendChild(dailyMinTemp);
       day.appendChild(dailyMaxTemp);
       day.appendChild(dailyWeather);
