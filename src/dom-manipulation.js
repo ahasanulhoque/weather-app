@@ -174,6 +174,15 @@ function displayWeather(weatherWrapper, weatherData) {
       const hour = document.createElement('section');
       hour.id = `hour-${i}`;
 
+      const hourlyTime = document.createElement('p');
+      const fullDate = format(weatherData.forecastData.hourly[i].date, 'PPpp');
+      hourlyTime.innerHTML =
+        fullDate.slice(0, fullDate.indexOf(',')) +
+        fullDate.slice(fullDate.indexOf(',') + 7, fullDate.lastIndexOf(':')) +
+        fullDate.slice(fullDate.indexOf(':') + 6);
+
+      hour.appendChild(hourlyTime);
+
       const hourlyTemp = document.createElement('p');
       hourlyTemp.innerHTML = `Temperature: ${Math.round(
         weatherData.forecastData.hourly[i].temp - 273.15

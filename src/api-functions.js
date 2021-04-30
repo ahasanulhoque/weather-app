@@ -114,11 +114,12 @@ const ProcessedWeatherData = function createProcessedDataObject(
 
   // Hour constructor
   const hour = function createHourlyData(i) {
+    const date = new Date(unprocessedData[1].hourly[i].dt * 1000);
     const temp = unprocessedData[1].hourly[i].temp;
     const feelsLike = unprocessedData[1].hourly[i].feels_like;
     const weather = unprocessedData[1].hourly[i].weather[0].main;
 
-    return { temp, feelsLike, weather };
+    return { date, temp, feelsLike, weather };
   };
 
   // Forecast constructor
