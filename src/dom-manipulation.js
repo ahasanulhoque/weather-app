@@ -59,7 +59,7 @@ function displayWeather(weatherWrapper, weatherData) {
   weatherWrapper.appendChild(cityName);
 
   const displayCurrentWeather = (() => {
-    // Function generates current weather data
+    // Function displays current weather data
     const currentWeather = document.createElement('section');
     currentWeather.id = 'current-weather';
 
@@ -96,6 +96,7 @@ function displayWeather(weatherWrapper, weatherData) {
   })();
 
   const displayDailyData = (() => {
+    // Function displays daily forecast
     const dailyData = document.createElement('section');
     dailyData.id = 'daily-data';
 
@@ -104,8 +105,13 @@ function displayWeather(weatherWrapper, weatherData) {
     dailyData.appendChild(dailyTitle);
 
     for (let i = 0; i < 7; i++) {
+      // day is section for whole day on DOM, including date and weather data
       const day = document.createElement('section');
       day.id = `day-${i}`;
+      day.classList.add('full-day');
+
+      const dateWrapper = document.createElement('div');
+      dateWrapper.classList.add('date-wrapper');
 
       const dailyDate = document.createElement('p');
       // Use format() from date-fns and slice date up to last comma, to exclude year
@@ -116,6 +122,11 @@ function displayWeather(weatherWrapper, weatherData) {
         0,
         format(weatherData.forecastData.daily[i].date, 'PPPP').lastIndexOf(',')
       );
+
+      dateWrapper.appendChild(dailyDate);
+
+      const dataWrapper = document.createElement('div');
+      dataWrapper.classList.add('daily-data-wrapper');
 
       const dailyMinTemp = document.createElement('p');
       dailyMinTemp.innerHTML = `Low: ${Math.round(
@@ -130,10 +141,19 @@ function displayWeather(weatherWrapper, weatherData) {
       const dailyWeather = document.createElement('p');
       dailyWeather.innerHTML = `${weatherData.forecastData.daily[i].shortWeather}`;
 
+      /*
       day.appendChild(dailyDate);
       day.appendChild(dailyMinTemp);
       day.appendChild(dailyMaxTemp);
       day.appendChild(dailyWeather);
+      */
+
+      dataWrapper.appendChild(dailyWeather);
+      dataWrapper.appendChild(dailyMinTemp);
+      dataWrapper.appendChild(dailyMaxTemp);
+
+      day.appendChild(dateWrapper);
+      day.appendChild(dataWrapper);
 
       dailyData.appendChild(day);
     }
@@ -142,6 +162,7 @@ function displayWeather(weatherWrapper, weatherData) {
   })();
 
   const displayHourlyData = (() => {
+    // Function displays hourly forecast
     const hourlyData = document.createElement('section');
     hourlyData.id = 'hourly-data';
 

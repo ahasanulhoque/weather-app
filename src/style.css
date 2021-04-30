@@ -10,6 +10,7 @@ body {
 
 #current-weather {
   height: 80vh;
+  overflow-y: auto;
 }
 
 #daily-data {
@@ -22,4 +23,9 @@ body {
   display: none;
   height: 80vh;
   overflow-y: auto;
+}
+
+.full-day {
+  display: flex;
+  align-items: center;
 }
