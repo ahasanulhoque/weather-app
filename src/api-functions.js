@@ -103,7 +103,9 @@ const ProcessedWeatherData = function createProcessedDataObject(
   // Day constructor
   const day = function createDailyData(i) {
     // Using i + 1 in daily array to skip day 0 (today)
-    const date = new Date(unprocessedData[1].daily[i + 1].dt * 1000);
+    const date = new Date(
+      unprocessedData[1].daily[i + 1].dt * 1000 + unprocessedData[0].timezone
+    );
     const minTemp = unprocessedData[1].daily[i + 1].temp.min;
     const maxTemp = unprocessedData[1].daily[i + 1].temp.max;
     const fullWeather = unprocessedData[1].daily[i + 1].weather[0].description;
@@ -114,7 +116,14 @@ const ProcessedWeatherData = function createProcessedDataObject(
 
   // Hour constructor
   const hour = function createHourlyData(i) {
-    const date = new Date(unprocessedData[1].hourly[i].dt * 1000);
+    const localTime = new Date();
+    const localTimeZone = localTime.getTimezoneOffset() * 60;
+    const date = new Date(
+      (unprocessedData[1].hourly[i].dt +
+        unprocessedData[0].timezone +
+        localTimeZone) *
+        1000
+    );
     const temp = unprocessedData[1].hourly[i].temp;
     const feelsLike = unprocessedData[1].hourly[i].feels_like;
     const weather = unprocessedData[1].hourly[i].weather[0].main;
