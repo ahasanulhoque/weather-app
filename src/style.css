@@ -29,3 +29,8 @@ body {
   display: flex;
   align-items: center;
 }
+
+.full-hour {
+  display: flex;
+  align-items: center;
+}

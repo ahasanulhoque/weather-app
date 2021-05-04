@@ -113,8 +113,7 @@ function displayWeather(weatherWrapper, weatherData) {
       const dateWrapper = document.createElement('div');
       dateWrapper.classList.add('date-wrapper');
 
-      const dailyDate = document.createElement('p');
-
+      const dailyDate = document.createElement('h4');
       // Use format() from date-fns and slice date up to last comma, to exclude year
       dailyDate.innerHTML = format(
         weatherData.forecastData.daily[i].date,
@@ -167,15 +166,22 @@ function displayWeather(weatherWrapper, weatherData) {
     for (let i = 0; i < 48; i++) {
       const hour = document.createElement('section');
       hour.id = `hour-${i}`;
+      hour.classList.add('full-hour');
 
-      const hourlyTime = document.createElement('p');
+      const hourWrapper = document.createElement('div');
+      hourWrapper.classList.add('hour-wrapper');
+
+      const hourlyTime = document.createElement('h4');
       const fullDate = format(weatherData.forecastData.hourly[i].date, 'PPpp');
       hourlyTime.innerHTML =
         fullDate.slice(0, fullDate.indexOf(',')) +
         fullDate.slice(fullDate.indexOf(',') + 7, fullDate.lastIndexOf(':')) +
         fullDate.slice(fullDate.indexOf(':') + 6);
 
-      hour.appendChild(hourlyTime);
+      hourWrapper.appendChild(hourlyTime);
+
+      const dataWrapper = document.createElement('div');
+      dataWrapper.classList.add('hourly-data-wrapper');
 
       const hourlyTemp = document.createElement('p');
       hourlyTemp.innerHTML = `Temperature: ${Math.round(
@@ -190,9 +196,12 @@ function displayWeather(weatherWrapper, weatherData) {
       const hourlyWeather = document.createElement('p');
       hourlyWeather.innerHTML = `${weatherData.forecastData.hourly[i].weather}`;
 
-      hour.appendChild(hourlyTemp);
-      hour.appendChild(hourlyFeelsLike);
-      hour.appendChild(hourlyWeather);
+      dataWrapper.appendChild(hourlyTemp);
+      dataWrapper.appendChild(hourlyFeelsLike);
+      dataWrapper.appendChild(hourlyWeather);
+
+      hour.appendChild(hourWrapper);
+      hour.appendChild(dataWrapper);
 
       hourlyData.appendChild(hour);
     }
