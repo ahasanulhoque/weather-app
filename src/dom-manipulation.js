@@ -104,7 +104,7 @@ function displayWeather(weatherWrapper, weatherData) {
     dailyTitle.innerHTML = 'Daily Forecast';
     dailyData.appendChild(dailyTitle);
 
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 8; i++) {
       // day is section for whole day on DOM, including date and weather data
       const day = document.createElement('section');
       day.id = `day-${i}`;
@@ -114,6 +114,7 @@ function displayWeather(weatherWrapper, weatherData) {
       dateWrapper.classList.add('date-wrapper');
 
       const dailyDate = document.createElement('p');
+
       // Use format() from date-fns and slice date up to last comma, to exclude year
       dailyDate.innerHTML = format(
         weatherData.forecastData.daily[i].date,
@@ -140,13 +141,6 @@ function displayWeather(weatherWrapper, weatherData) {
 
       const dailyWeather = document.createElement('p');
       dailyWeather.innerHTML = `${weatherData.forecastData.daily[i].shortWeather}`;
-
-      /*
-      day.appendChild(dailyDate);
-      day.appendChild(dailyMinTemp);
-      day.appendChild(dailyMaxTemp);
-      day.appendChild(dailyWeather);
-      */
 
       dataWrapper.appendChild(dailyWeather);
       dataWrapper.appendChild(dailyMinTemp);

@@ -100,24 +100,28 @@ const ProcessedWeatherData = function createProcessedDataObject(
     };
   })();
 
+  // localTimeZone is used in day and hour constructors to get local times for searched city
+  const localTime = new Date();
+  const localTimeZone = localTime.getTimezoneOffset() * 60;
+
   // Day constructor
   const day = function createDailyData(i) {
-    // Using i + 1 in daily array to skip day 0 (today)
     const date = new Date(
-      unprocessedData[1].daily[i + 1].dt * 1000 + unprocessedData[0].timezone
+      (unprocessedData[1].daily[i].dt +
+        unprocessedData[0].timezone +
+        localTimeZone) *
+        1000
     );
-    const minTemp = unprocessedData[1].daily[i + 1].temp.min;
-    const maxTemp = unprocessedData[1].daily[i + 1].temp.max;
-    const fullWeather = unprocessedData[1].daily[i + 1].weather[0].description;
-    const shortWeather = unprocessedData[1].daily[i + 1].weather[0].main;
+    const minTemp = unprocessedData[1].daily[i].temp.min;
+    const maxTemp = unprocessedData[1].daily[i].temp.max;
+    const fullWeather = unprocessedData[1].daily[i].weather[0].description;
+    const shortWeather = unprocessedData[1].daily[i].weather[0].main;
 
     return { date, minTemp, maxTemp, fullWeather, shortWeather };
   };
 
   // Hour constructor
   const hour = function createHourlyData(i) {
-    const localTime = new Date();
-    const localTimeZone = localTime.getTimezoneOffset() * 60;
     const date = new Date(
       (unprocessedData[1].hourly[i].dt +
         unprocessedData[0].timezone +
@@ -134,7 +138,7 @@ const ProcessedWeatherData = function createProcessedDataObject(
   // Forecast constructor
   const forecastData = (function createForecastData() {
     const daily = [];
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 8; i++) {
       daily.push(day(i));
     }
 
