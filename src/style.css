@@ -6,6 +6,9 @@ body {
 
 #content {
   height: 100vh;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: center;
 }
 
 #current-weather {
@@ -28,9 +31,19 @@ body {
 .full-day {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .full-hour {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.daily-data-wrapper {
+  text-align: start;
+}
+
+.hourly-data-wrapper {
+  text-align: start;
 }
