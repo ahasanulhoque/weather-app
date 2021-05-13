@@ -1,6 +1,11 @@
 import './style.css';
 import { retrieveData, ProcessedWeatherData } from './api-functions';
-import { createPage, displayWeather, changeDisplay } from './dom-manipulation';
+import {
+  createPage,
+  displayWeather,
+  changeDisplay,
+  changeUnits,
+} from './dom-manipulation';
 
 const PageController = (() => {
   const content = document.querySelector('#content');
@@ -51,5 +56,12 @@ const PageController = (() => {
     } else if (e.target.id === 'show-hourly') {
       changeDisplay(weatherSections, 2);
     }
+  };
+
+  const unitButton = document.querySelector('#temp-unit-button');
+
+  unitButton.onclick = () => {
+    alert('hello');
+    // Need to slice temp values from dom, from after last space to two characters before end
   };
 })();

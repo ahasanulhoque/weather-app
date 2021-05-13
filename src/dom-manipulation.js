@@ -19,6 +19,11 @@ function createPage(content) {
 
   content.appendChild(form);
 
+  const unitButton = document.createElement('button');
+  unitButton.id = 'temp-unit-button';
+  unitButton.innerHTML = 'F';
+  content.appendChild(unitButton);
+
   // Create the section for weather, which will be filled by displayWeather
   const weatherWrapper = document.createElement('section');
   weatherWrapper.id = 'weather-wrapper';
@@ -67,21 +72,25 @@ function displayWeather(weatherWrapper, weatherData) {
     currentTitle.innerHTML = 'Current Weather';
 
     const currentTemp = document.createElement('p');
+    currentTemp.classList.add('templike');
     currentTemp.innerHTML = `Temperature: ${Math.round(
       weatherData.currentData.temp - 273.15
     )} C`;
 
     const currentFeelsLike = document.createElement('p');
+    currentFeelsLike.classList.add('templike');
     currentFeelsLike.innerHTML = `Feels like: ${Math.round(
       weatherData.currentData.feelsLike - 273.15
     )} C`;
 
     const currentMin = document.createElement('p');
+    currentMin.classList.add('templike');
     currentMin.innerHTML = `Low: ${Math.round(
       weatherData.currentData.minTemp - 273.15
     )} C`;
 
     const currentMax = document.createElement('p');
+    currentMax.classList.add('templike');
     currentMax.innerHTML = `High: ${Math.round(
       weatherData.currentData.maxTemp - 273.15
     )} C`;
@@ -129,11 +138,13 @@ function displayWeather(weatherWrapper, weatherData) {
       dataWrapper.classList.add('daily-data-wrapper');
 
       const dailyMinTemp = document.createElement('p');
+      dailyMinTemp.classList.add('templike');
       dailyMinTemp.innerHTML = `Low: ${Math.round(
         weatherData.forecastData.daily[i].minTemp - 273.15
       )} C`;
 
       const dailyMaxTemp = document.createElement('p');
+      dailyMaxTemp.classList.add('templike');
       dailyMaxTemp.innerHTML = `High: ${Math.round(
         weatherData.forecastData.daily[i].maxTemp - 273.15
       )} C`;
@@ -184,11 +195,13 @@ function displayWeather(weatherWrapper, weatherData) {
       dataWrapper.classList.add('hourly-data-wrapper');
 
       const hourlyTemp = document.createElement('p');
+      hourlyTemp.classList.add('templike');
       hourlyTemp.innerHTML = `Temperature: ${Math.round(
         weatherData.forecastData.hourly[i].temp - 273.15
       )} C`;
 
       const hourlyFeelsLike = document.createElement('p');
+      hourlyFeelsLike.classList.add('templike');
       hourlyFeelsLike.innerHTML = `Feels like: ${Math.round(
         weatherData.forecastData.hourly[i].feelsLike - 273.15
       )} C`;
@@ -223,4 +236,5 @@ function changeDisplay(pageElements, chosenElement) {
   }
 }
 
-export { createPage, displayWeather, changeDisplay };
+function changeUnits() {}
+export { createPage, displayWeather, changeDisplay, changeUnits };
