@@ -21,7 +21,7 @@ function createPage(content) {
 
   const unitButton = document.createElement('button');
   unitButton.id = 'temp-unit-button';
-  unitButton.innerHTML = 'F';
+  unitButton.innerHTML = 'C / F';
   content.appendChild(unitButton);
 
   // Create the section for weather, which will be filled by displayWeather
@@ -236,5 +236,33 @@ function changeDisplay(pageElements, chosenElement) {
   }
 }
 
-function changeUnits() {}
+function changeUnits(weatherWrapper) {
+  // Get all templike elements (temp, feels like, high, low) from DOM
+  // Get current temp unit from first templike element
+  let temps = weatherWrapper.querySelectorAll('.templike');
+  let currentUnit = temps[0].innerHTML.slice(-1);
+
+  temps.forEach((temp) => {
+    // Get the measurement for each templike element
+    let currentTemp = temp.innerHTML.slice(
+      temp.innerHTML.indexOf(':') + 2,
+      temp.innerHTML.lastIndexOf(' ')
+    );
+    if (currentUnit == 'C') {
+      // Convert to Fahrenheit and update DOM
+      currentTemp = Math.round(currentTemp * (9 / 5) + 32);
+      temp.innerHTML =
+        temp.innerHTML.slice(0, temp.innerHTML.indexOf(':') + 2) +
+        currentTemp +
+        ' F';
+    } else if (currentUnit == 'F') {
+      // Convert to Celsius and update DOM
+      currentTemp = Math.round((currentTemp - 32) / (9 / 5));
+      temp.innerHTML =
+        temp.innerHTML.slice(0, temp.innerHTML.indexOf(':') + 2) +
+        currentTemp +
+        ' C';
+    }
+  });
+}
 export { createPage, displayWeather, changeDisplay, changeUnits };

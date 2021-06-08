@@ -61,7 +61,7 @@ const PageController = (() => {
   const unitButton = document.querySelector('#temp-unit-button');
 
   unitButton.onclick = () => {
-    alert('hello');
-    // Need to slice temp values from dom, from after last space to two characters before end
+    // Pass weather section of DOM into changeUnits funciton
+    changeUnits(content.querySelector('#weather-wrapper'));
   };
 })();
