@@ -228,7 +228,7 @@ function changeDisplay(pageElements, chosenElement) {
   // pageElements should be array, and chosenElement should be index of element to display
 
   for (let i = 0; i < pageElements.length; i++) {
-    if (i == chosenElement) {
+    if (i === chosenElement) {
       pageElements[i].style.display = 'block';
     } else {
       pageElements[i].style.display = 'none';
@@ -239,8 +239,8 @@ function changeDisplay(pageElements, chosenElement) {
 function changeUnits(weatherWrapper) {
   // Get all templike elements (temp, feels like, high, low) from DOM
   // Get current temp unit from first templike element
-  let temps = weatherWrapper.querySelectorAll('.templike');
-  let currentUnit = temps[0].innerHTML.slice(-1);
+  const temps = weatherWrapper.querySelectorAll('.templike');
+  const currentUnit = temps[0].innerHTML.slice(-1);
 
   temps.forEach((temp) => {
     // Get the measurement for each templike element
@@ -248,20 +248,21 @@ function changeUnits(weatherWrapper) {
       temp.innerHTML.indexOf(':') + 2,
       temp.innerHTML.lastIndexOf(' ')
     );
-    if (currentUnit == 'C') {
+    if (currentUnit === 'C') {
       // Convert to Fahrenheit and update DOM
       currentTemp = Math.round(currentTemp * (9 / 5) + 32);
-      temp.innerHTML =
-        temp.innerHTML.slice(0, temp.innerHTML.indexOf(':') + 2) +
-        currentTemp +
-        ' F';
-    } else if (currentUnit == 'F') {
+      temp.innerHTML = `${temp.innerHTML.slice(
+        0,
+        temp.innerHTML.indexOf(':') + 2
+      )} 
+        ${currentTemp}  F`;
+    } else if (currentUnit === 'F') {
       // Convert to Celsius and update DOM
       currentTemp = Math.round((currentTemp - 32) / (9 / 5));
-      temp.innerHTML =
-        temp.innerHTML.slice(0, temp.innerHTML.indexOf(':') + 2) +
-        currentTemp +
-        ' C';
+      temp.innerHTML = `${temp.innerHTML.slice(
+        0,
+        temp.innerHTML.indexOf(':') + 2
+      )} ${currentTemp} C`;
     }
   });
 }
