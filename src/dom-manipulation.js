@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import Icon01d from './assets/01d@2x.png';
+/*import Icon01d from './assets/01d@2x.png';
 import Icon01n from './assets/01n@2x.png';
 import Icon02d from './assets/02d@2x.png';
 import Icon02n from './assets/02n@2x.png';
@@ -16,7 +16,7 @@ import Icon11n from './assets/11n@2x.png';
 import Icon13d from './assets/13d@2x.png';
 import Icon13n from './assets/13n@2x.png';
 import Icon50d from './assets/50d@2x.png';
-import Icon50n from './assets/50n@2x.png';
+import Icon50n from './assets/50n@2x.png';*/
 
 function createPage(content) {
   // Create the form that will be used to search for weather
