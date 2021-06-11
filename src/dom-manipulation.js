@@ -1,4 +1,22 @@
 import { format } from 'date-fns';
+import Icon01d from './assets/01d@2x.png';
+import Icon01n from './assets/01n@2x.png';
+import Icon02d from './assets/02d@2x.png';
+import Icon02n from './assets/02n@2x.png';
+import Icon03d from './assets/03d@2x.png';
+import Icon03n from './assets/03n@2x.png';
+import Icon04d from './assets/04d@2x.png';
+import Icon04n from './assets/04n@2x.png';
+import Icon09d from './assets/09d@2x.png';
+import Icon09n from './assets/09n@2x.png';
+import Icon10d from './assets/10d@2x.png';
+import Icon10n from './assets/10n@2x.png';
+import Icon11d from './assets/11d@2x.png';
+import Icon11n from './assets/11n@2x.png';
+import Icon13d from './assets/13d@2x.png';
+import Icon13n from './assets/13n@2x.png';
+import Icon50d from './assets/50d@2x.png';
+import Icon50n from './assets/50n@2x.png';
 
 function createPage(content) {
   // Create the form that will be used to search for weather
@@ -71,6 +89,10 @@ function displayWeather(weatherWrapper, weatherData) {
     const currentTitle = document.createElement('h3');
     currentTitle.innerHTML = 'Current Weather';
 
+    const currentIcon = new Image();
+    currentIcon.src = `../src/assets/${weatherData.currentData.weatherIcon}@2x.png`;
+    currentWeather.appendChild(currentIcon);
+
     const currentTemp = document.createElement('p');
     currentTemp.classList.add('templike');
     currentTemp.innerHTML = `Temperature: ${Math.round(
@@ -137,6 +159,16 @@ function displayWeather(weatherWrapper, weatherData) {
       const dataWrapper = document.createElement('div');
       dataWrapper.classList.add('daily-data-wrapper');
 
+      const dailyIconWrapper = document.createElement('div');
+      dailyIconWrapper.classList.add('daily-icon-wrapper');
+
+      const dailyIcon = new Image();
+      dailyIcon.src = `../src/assets/${weatherData.forecastData.daily[i].weatherIcon}@2x.png`;
+      dailyIconWrapper.appendChild(dailyIcon);
+
+      const dailyDataColumn = document.createElement('div');
+      dailyDataColumn.classList.add('daily-data-column');
+
       const dailyMinTemp = document.createElement('p');
       dailyMinTemp.classList.add('templike');
       dailyMinTemp.innerHTML = `Low: ${Math.round(
@@ -152,9 +184,12 @@ function displayWeather(weatherWrapper, weatherData) {
       const dailyWeather = document.createElement('p');
       dailyWeather.innerHTML = `${weatherData.forecastData.daily[i].shortWeather}`;
 
-      dataWrapper.appendChild(dailyWeather);
-      dataWrapper.appendChild(dailyMinTemp);
-      dataWrapper.appendChild(dailyMaxTemp);
+      dailyDataColumn.appendChild(dailyWeather);
+      dailyDataColumn.appendChild(dailyMinTemp);
+      dailyDataColumn.appendChild(dailyMaxTemp);
+
+      dataWrapper.appendChild(dailyIconWrapper);
+      dataWrapper.appendChild(dailyDataColumn);
 
       day.appendChild(dateWrapper);
       day.appendChild(dataWrapper);

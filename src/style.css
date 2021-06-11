@@ -44,6 +44,7 @@ body {
 
 .daily-data-wrapper {
   text-align: start;
+  display: flex;
 }
 
 .hourly-data-wrapper {
