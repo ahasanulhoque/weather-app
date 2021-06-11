@@ -88,6 +88,7 @@ const ProcessedWeatherData = function createProcessedDataObject(
     // From 'weather' property
     const fullWeather = unprocessedData[0].weather[0].description;
     const shortWeather = unprocessedData[0].weather[0].main;
+    const weatherIcon = unprocessedData[0].weather[0].icon;
     return {
       cityName,
       temp,
@@ -97,6 +98,7 @@ const ProcessedWeatherData = function createProcessedDataObject(
       humidityPercentage,
       fullWeather,
       shortWeather,
+      weatherIcon,
     };
   })();
 
@@ -116,8 +118,9 @@ const ProcessedWeatherData = function createProcessedDataObject(
     const maxTemp = unprocessedData[1].daily[i].temp.max;
     const fullWeather = unprocessedData[1].daily[i].weather[0].description;
     const shortWeather = unprocessedData[1].daily[i].weather[0].main;
+    const weatherIcon = unprocessedData[1].daily[i].weather[0].icon;
 
-    return { date, minTemp, maxTemp, fullWeather, shortWeather };
+    return { date, minTemp, maxTemp, fullWeather, shortWeather, weatherIcon };
   };
 
   // Hour constructor
@@ -131,8 +134,9 @@ const ProcessedWeatherData = function createProcessedDataObject(
     const temp = unprocessedData[1].hourly[i].temp;
     const feelsLike = unprocessedData[1].hourly[i].feels_like;
     const weather = unprocessedData[1].hourly[i].weather[0].main;
+    const weatherIcon = unprocessedData[1].hourly[i].weather[0].icon;
 
-    return { date, temp, feelsLike, weather };
+    return { date, temp, feelsLike, weather, weatherIcon };
   };
 
   // Forecast constructor
