@@ -50,11 +50,11 @@ const PageController = (() => {
     weatherSections.push(content.querySelector('#hourly-data'));
 
     if (e.target.id === 'show-current') {
-      changeDisplay(weatherSections, 0);
+      changeDisplay(weatherSections, 0, 'flex');
     } else if (e.target.id === 'show-daily') {
-      changeDisplay(weatherSections, 1);
+      changeDisplay(weatherSections, 1, 'block');
     } else if (e.target.id === 'show-hourly') {
-      changeDisplay(weatherSections, 2);
+      changeDisplay(weatherSections, 2, 'block');
     }
   };
 

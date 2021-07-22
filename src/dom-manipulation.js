@@ -86,12 +86,15 @@ function displayWeather(weatherWrapper, weatherData) {
     const currentWeather = document.createElement('section');
     currentWeather.id = 'current-weather';
 
-    const currentTitle = document.createElement('h3');
-    currentTitle.innerHTML = 'Current Weather';
-
     const currentIcon = new Image();
     currentIcon.src = `../src/assets/${weatherData.currentData.weatherIcon}@2x.png`;
     currentWeather.appendChild(currentIcon);
+
+    const currentWeatherDataWrapper = document.createElement('section');
+    currentWeatherDataWrapper.id = 'current-weather-data'
+
+    const currentTitle = document.createElement('h3');
+    currentTitle.innerHTML = 'Current Weather';
 
     const currentTemp = document.createElement('p');
     currentTemp.classList.add('templike');
@@ -117,11 +120,13 @@ function displayWeather(weatherWrapper, weatherData) {
       weatherData.currentData.maxTemp - 273.15
     )} C`;
 
-    currentWeather.appendChild(currentTitle);
-    currentWeather.appendChild(currentTemp);
-    currentWeather.appendChild(currentFeelsLike);
-    currentWeather.appendChild(currentMin);
-    currentWeather.appendChild(currentMax);
+    currentWeatherDataWrapper.appendChild(currentTitle);
+    currentWeatherDataWrapper.appendChild(currentTemp);
+    currentWeatherDataWrapper.appendChild(currentFeelsLike);
+    currentWeatherDataWrapper.appendChild(currentMin);
+    currentWeatherDataWrapper.appendChild(currentMax);
+
+    currentWeather.appendChild(currentWeatherDataWrapper);
 
     weatherWrapper.appendChild(currentWeather);
   })();
@@ -229,6 +234,16 @@ function displayWeather(weatherWrapper, weatherData) {
       const dataWrapper = document.createElement('div');
       dataWrapper.classList.add('hourly-data-wrapper');
 
+      const hourlyIconWrapper = document.createElement('div');
+      hourlyIconWrapper.classList.add('hourly-icon-wrapper');
+
+      const hourlyIcon = new Image();
+      hourlyIcon.src = `../src/assets/${weatherData.forecastData.hourly[i].weatherIcon}@2x.png`;
+      hourlyIconWrapper.appendChild(hourlyIcon);
+
+      const hourlyDataColumn = document.createElement('div');
+      hourlyDataColumn.classList.add('hourly-data-column');
+
       const hourlyTemp = document.createElement('p');
       hourlyTemp.classList.add('templike');
       hourlyTemp.innerHTML = `Temperature: ${Math.round(
@@ -244,9 +259,12 @@ function displayWeather(weatherWrapper, weatherData) {
       const hourlyWeather = document.createElement('p');
       hourlyWeather.innerHTML = `${weatherData.forecastData.hourly[i].weather}`;
 
-      dataWrapper.appendChild(hourlyTemp);
-      dataWrapper.appendChild(hourlyFeelsLike);
-      dataWrapper.appendChild(hourlyWeather);
+      hourlyDataColumn.appendChild(hourlyTemp);
+      hourlyDataColumn.appendChild(hourlyFeelsLike);
+      hourlyDataColumn.appendChild(hourlyWeather);
+
+      dataWrapper.appendChild(hourlyIconWrapper);
+      dataWrapper.appendChild(hourlyDataColumn);
 
       hour.appendChild(hourWrapper);
       hour.appendChild(dataWrapper);
@@ -258,13 +276,13 @@ function displayWeather(weatherWrapper, weatherData) {
   })();
 }
 
-function changeDisplay(pageElements, chosenElement) {
+function changeDisplay(pageElements, chosenElement, displayOption) {
   // Funciton will change display on page according to what user clicked
   // pageElements should be array, and chosenElement should be index of element to display
 
   for (let i = 0; i < pageElements.length; i++) {
     if (i === chosenElement) {
-      pageElements[i].style.display = 'block';
+      pageElements[i].style.display = displayOption;
     } else {
       pageElements[i].style.display = 'none';
     }

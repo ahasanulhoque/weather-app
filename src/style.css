@@ -11,11 +11,22 @@ body {
   padding-left: 1rem;
   padding-right: 1rem;
   text-align: center;
+  background: hsl(220, 100%, 75%);
+}
+
+#search-form {
+  padding-top: 1vh;
 }
 
 #current-weather {
   height: 80vh;
   overflow-y: auto;
+  display: flex;
+  justify-content: center;
+}
+
+#current-weather-data {
+  text-align: left;
 }
 
 #daily-data {
@@ -49,4 +60,10 @@ body {
 
 .hourly-data-wrapper {
   text-align: start;
+  display: flex;
+}
+
+img {
+  max-height: 200px;
+  max-width: 200px;
 }
