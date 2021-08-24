@@ -1,22 +1,4 @@
 import { format } from 'date-fns';
-/*import Icon01d from './assets/01d@2x.png';
-import Icon01n from './assets/01n@2x.png';
-import Icon02d from './assets/02d@2x.png';
-import Icon02n from './assets/02n@2x.png';
-import Icon03d from './assets/03d@2x.png';
-import Icon03n from './assets/03n@2x.png';
-import Icon04d from './assets/04d@2x.png';
-import Icon04n from './assets/04n@2x.png';
-import Icon09d from './assets/09d@2x.png';
-import Icon09n from './assets/09n@2x.png';
-import Icon10d from './assets/10d@2x.png';
-import Icon10n from './assets/10n@2x.png';
-import Icon11d from './assets/11d@2x.png';
-import Icon11n from './assets/11n@2x.png';
-import Icon13d from './assets/13d@2x.png';
-import Icon13n from './assets/13n@2x.png';
-import Icon50d from './assets/50d@2x.png';
-import Icon50n from './assets/50n@2x.png';*/
 
 function createPage(content) {
   // Create the form that will be used to search for weather

@@ -11,18 +11,14 @@ const PageController = (() => {
   const content = document.querySelector('#content');
   createPage(content);
 
-  // Below function is just testing that retrieval and processing of data
-  // from api works
-  async function retrieveProcess() {
-    const x = await retrieveData('london,uk');
-    console.log(x);
+  async function initializePage() {
+    const x = await retrieveData('washington dc,us');
     const y = ProcessedWeatherData(x);
-    console.log(y);
 
     displayWeather(content.querySelector('#weather-wrapper'), y);
   }
 
-  retrieveProcess();
+  initializePage();
 
   const searchField = document.querySelector('input');
   const searchForm = document.querySelector('#search-form');
@@ -30,9 +26,7 @@ const PageController = (() => {
   searchForm.onsubmit = async (submission) => {
     submission.preventDefault();
     const x = await retrieveData(searchField.value);
-    console.log(x);
     const y = ProcessedWeatherData(x);
-    console.log(y);
 
     displayWeather(content.querySelector('#weather-wrapper'), y);
   };

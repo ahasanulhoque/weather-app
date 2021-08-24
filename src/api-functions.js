@@ -25,30 +25,9 @@ const retrieveData = async function retriveWeatherData(location) {
     }
 
     // If the user entered a zip code, use this fetch
-    if (isNaN(location.charAt(location.length - 1))) {
-      const responseCurrent = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?zip=${location}&APPID=1baddaa1511e4b0e92e8f747c1a3353c`,
-        { mode: 'cors' }
-      );
-      const currentWeatherData = await responseCurrent.json();
-
-      // Variables to be used in forecast API call
-      const lat = await currentWeatherData.coord.lat;
-      const lon = await currentWeatherData.coord.lon;
-
-      const responseForecast = await fetch(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&APPID=1baddaa1511e4b0e92e8f747c1a3353c`,
-        { mode: 'cors' }
-      );
-      const forecastData = await responseForecast.json();
-
-      return [currentWeatherData, forecastData];
-    }
-
-    // If the user entered a city ID, use this fetch
     if (!isNaN(location)) {
       const responseCurrent = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?id=${location}&APPID=1baddaa1511e4b0e92e8f747c1a3353c`,
+        `https://api.openweathermap.org/data/2.5/weather?zip=${location}&APPID=1baddaa1511e4b0e92e8f747c1a3353c`,
         { mode: 'cors' }
       );
       const currentWeatherData = await responseCurrent.json();
