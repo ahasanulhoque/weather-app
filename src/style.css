@@ -112,3 +112,35 @@ img {
 }
 
 /* Responsive design */
+
+@media screen and (min-width: 700px) {
+  #content {
+    min-height: 100vh;
+  }
+
+  #current-weather {
+    height: 100%;
+  }
+
+  #button-display-wrapper {
+    display: none;
+  }
+
+  #daily-data,
+  #hourly-data {
+    display: flex;
+    height: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
+
+  .full-day,
+  .full-hour {
+    flex-direction: column;
+  }
+
+  #daily-title,
+  #hourly-title {
+    display: none;
+  }
+}

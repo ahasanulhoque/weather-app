@@ -147,6 +147,7 @@ function displayWeather(weatherWrapper, weatherData) {
     dailyData.id = 'daily-data';
 
     const dailyTitle = document.createElement('h3');
+    dailyTitle.id = 'daily-title';
     dailyTitle.innerHTML = 'Daily Forecast';
     dailyData.appendChild(dailyTitle);
 
@@ -221,6 +222,7 @@ function displayWeather(weatherWrapper, weatherData) {
     hourlyData.id = 'hourly-data';
 
     const hourlyTitle = document.createElement('h3');
+    hourlyTitle.id = 'hourly-title';
     hourlyTitle.innerHTML = 'Hourly Forecast';
     hourlyData.appendChild(hourlyTitle);
 
