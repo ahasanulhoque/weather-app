@@ -20,6 +20,9 @@ import Icon50n from './assets/50n@2x.png';*/
 
 function createPage(content) {
   // Create the form that will be used to search for weather
+  const header = document.createElement('section');
+  header.id = 'page-header';
+
   const form = document.createElement('form');
   form.id = 'search-form';
 
@@ -28,19 +31,23 @@ function createPage(content) {
 
   const inputButton = document.createElement('button');
   inputButton.id = 'input-button';
+  inputButton.classList.add('header-button');
 
   inputField.placeholder = 'Search for your city';
-  inputButton.innerHTML = 'Submit';
+  inputButton.innerHTML = 'Search';
 
   form.appendChild(inputField);
   form.appendChild(inputButton);
 
-  content.appendChild(form);
-
   const unitButton = document.createElement('button');
   unitButton.id = 'temp-unit-button';
+  unitButton.classList.add('header-button');
   unitButton.innerHTML = 'C / F';
-  content.appendChild(unitButton);
+
+  header.appendChild(form);
+  header.appendChild(unitButton);
+
+  content.appendChild(header);
 
   // Create the section for weather, which will be filled by displayWeather
   const weatherWrapper = document.createElement('section');
@@ -55,16 +62,19 @@ function createPage(content) {
   // Create display buttons
   const currentButton = document.createElement('button');
   currentButton.id = 'show-current';
+  currentButton.classList.add('display-control-button');
   currentButton.innerHTML = 'Current';
   buttonDisplayWrapper.appendChild(currentButton);
 
   const dailyButton = document.createElement('button');
   dailyButton.id = 'show-daily';
+  dailyButton.classList.add('display-control-button');
   dailyButton.innerHTML = 'Daily';
   buttonDisplayWrapper.appendChild(dailyButton);
 
   const hourlyButton = document.createElement('button');
   hourlyButton.id = 'show-hourly';
+  hourlyButton.classList.add('display-control-button');
   hourlyButton.innerHTML = 'Hourly';
   buttonDisplayWrapper.appendChild(hourlyButton);
 
@@ -91,7 +101,7 @@ function displayWeather(weatherWrapper, weatherData) {
     currentWeather.appendChild(currentIcon);
 
     const currentWeatherDataWrapper = document.createElement('section');
-    currentWeatherDataWrapper.id = 'current-weather-data'
+    currentWeatherDataWrapper.id = 'current-weather-data';
 
     const currentTitle = document.createElement('h3');
     currentTitle.innerHTML = 'Current Weather';

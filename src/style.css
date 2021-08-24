@@ -14,8 +14,49 @@ body {
   background: hsl(220, 100%, 75%);
 }
 
-#search-form {
+#page-header {
   padding-top: 1vh;
+  display: flex;
+  justify-content: center;
+}
+
+#search-input {
+  background: hsl(221, 100%, 95%);
+  border-radius: 8px;
+}
+
+.header-button {
+  border-radius: 0px;
+  border: hsl(0, 0%, 85%) solid;
+  margin-left: 2px;
+  background: hsl(0, 0%, 85%);
+}
+
+.header-button:hover {
+  background: hsl(0, 0%, 80%);
+  border: hsl(0, 0%, 80%) solid;
+}
+
+.header-button:active {
+  background: hsl(0, 0%, 75%);
+  border: hsl(0, 0%, 75%) solid;
+}
+
+.display-control-button {
+  border-radius: 0px;
+  border: hsl(0, 0%, 85%) solid;
+  background: hsl(0, 0%, 85%);
+  width: 7rem;
+}
+
+.display-control-button:hover {
+  background: hsl(0, 0%, 80%);
+  border: hsl(0, 0%, 80%) solid;
+}
+
+.display-control-button:active {
+  background: hsl(0, 0%, 75%);
+  border: hsl(0, 0%, 75%) solid;
 }
 
 #current-weather {
@@ -63,7 +104,11 @@ body {
   display: flex;
 }
 
+/* All weather icons */
+
 img {
   max-height: 200px;
   max-width: 200px;
 }
+
+/* Responsive design */
