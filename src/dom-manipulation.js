@@ -79,7 +79,7 @@ function displayWeather(weatherWrapper, weatherData) {
     currentWeather.id = 'current-weather';
 
     const currentIcon = new Image();
-    currentIcon.src = `/src/assets/${weatherData.currentData.weatherIcon}@2x.png`;
+    currentIcon.src = `assets/${weatherData.currentData.weatherIcon}@2x.png`;
     currentWeather.appendChild(currentIcon);
 
     const currentWeatherDataWrapper = document.createElement('section');
@@ -161,7 +161,7 @@ function displayWeather(weatherWrapper, weatherData) {
       dailyIconWrapper.classList.add('daily-icon-wrapper');
 
       const dailyIcon = new Image();
-      dailyIcon.src = `/src/assets/${weatherData.forecastData.daily[i].weatherIcon}@2x.png`;
+      dailyIcon.src = `assets/${weatherData.forecastData.daily[i].weatherIcon}@2x.png`;
       dailyIconWrapper.appendChild(dailyIcon);
 
       const dailyDataColumn = document.createElement('div');
@@ -232,7 +232,7 @@ function displayWeather(weatherWrapper, weatherData) {
       hourlyIconWrapper.classList.add('hourly-icon-wrapper');
 
       const hourlyIcon = new Image();
-      hourlyIcon.src = `/src/assets/${weatherData.forecastData.hourly[i].weatherIcon}@2x.png`;
+      hourlyIcon.src = `assets/${weatherData.forecastData.hourly[i].weatherIcon}@2x.png`;
       hourlyIconWrapper.appendChild(hourlyIcon);
 
       const hourlyDataColumn = document.createElement('div');
