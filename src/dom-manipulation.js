@@ -79,6 +79,7 @@ function displayWeather(weatherWrapper, weatherData) {
     currentWeather.id = 'current-weather';
 
     const currentIcon = new Image();
+    currentIcon.id = 'current-weather-icon';
     currentIcon.src = `assets/${weatherData.currentData.weatherIcon}@2x.png`;
     currentWeather.appendChild(currentIcon);
 
