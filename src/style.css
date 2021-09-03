@@ -46,7 +46,7 @@ body {
   border-radius: 0px;
   border: hsl(0, 0%, 85%) solid;
   background: hsl(0, 0%, 85%);
-  width: 7rem;
+  width: 30vw;
 }
 
 .display-control-button:hover {
